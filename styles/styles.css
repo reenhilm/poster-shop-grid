@@ -1,0 +1,347 @@
+@font-face {
+    font-family: 'Roboto Black';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+    --blackish-color: #101212;
+    --trueblack-color: #000000;
+    --secondary-color: #3de07e;
+    --third-color: #333333;
+    --fourth-color: #E83F57;;
+
+    
+    --almost-white-color: #F8F8F8;
+
+    --font-family-fira: 'Fira Sans', sans-serif;
+    --font-family-roboto: 'Roboto', sans-serif;
+    --font-family-roboto-black: 'Roboto Black', sans-serif;
+
+    /* 12px 14.4px line-height */
+    --font-size-small: calc(12rem / 16);
+
+    /* 16px 22.4px line-height*/
+    --font-size-base: calc(16rem / 16);
+
+    /* 24px 28.13px line-height*/
+    --font-size-large: calc(24rem / 16);
+
+    /* 32px 37.5px line-height*/
+    --font-size-xl: calc(32rem / 16);
+
+    /* 34px 40.8px line-height */
+    --font-size-2xl: calc(34rem / 16);
+
+    /* 40px 48px line-height */
+    --font-size-3xl: calc(40rem / 16);
+
+    /* 48px 56.25px line-height */
+    --font-size-4xl: calc(48rem / 16);
+
+    /* 102px 119,53px line-height */
+    --font-size-5xl: calc(102rem / 16);
+
+    /* designed to fit an example estimated to have had viewport height of 663 */
+    /* if viewport example is 1440 and user is assumed to use a monitor with widescreen 16:9 and bookmarks-bar and adress-bar showing 80–120px, windows taskbar 40–50px. I calculated height ratio for viewport to be approx 663px, so I will use that when calculating the vh */
+
+    /* WHY? to keep the aspect ratio of paddings and spacings when using a smaller or bigger viewport, respecting the designer */
+    --viewportwidth: 1440;
+    --viewportheight: 663;
+
+    --var-cardgap-percent: 3%;
+
+    --var213h: min(calc(213vh / var(--viewportheight)*100), calc(213rem / 16));
+    --var123h: min(calc(123vh / var(--viewportheight)*100), calc(123rem / 16));
+    --var132w: min(calc(132vw / var(--viewportwidth)*100), calc(132rem / 16));
+
+    /* --gutterw: min(calc(213vw / var(--viewportwidth)*100), calc(213rem / 16)); */
+}
+
+.itemslist {
+    width: 100%;   
+    border-collapse: collapse;
+
+    th, td {
+            padding: 15px 15px 15px 0px;
+    }
+
+    &>tbody {
+        font-size: var(--font-size-xl);
+    }
+
+    &>thead {
+        font-size: var(--font-size-large);
+        text-align: left;
+        background-color: hsla(0, 83%, 57%, 0.2)
+    }
+}
+
+.totalrow td {
+    border-top: 2px solid white;
+    font-weight: 700;
+}
+
+header> nav.open {
+    background-color: var(--fourth-color);
+    left: 0rem;
+    transition: 0.4s ease-in;
+}
+
+header > nav {
+    left: calc(-560rem/16);
+    min-height: 100%;
+    position: absolute;
+    background-color: var(--blackish-color);
+    color: white;
+    margin-top: calc(55rem/16);
+    z-index: 99;
+    width: calc(560rem/16);
+    transition: 0.4s ease-out;    
+}
+
+a.toggle {
+    z-index: 100;
+    position: absolute;
+    padding: 1rem;
+    transition: transform 0.4s;
+
+    &:hover {
+        transform: scale(1.5);
+    }
+}
+
+header {
+    grid-area: header;
+    background-color: var(--secondary-color);
+
+    &> h1 {
+        align-self: center;
+        padding-top: var(--var213h);
+        padding-bottom: var(--var123h);
+    }
+
+    &>figure {
+        align-self: center;
+    }
+
+    &> nav {
+        padding-inline: min(calc(32vw / var(--viewportwidth)*100), calc(32rem / 16));
+        padding-block: min(calc(32vh / var(--viewportheight)*100), calc(32rem / 16));
+    }
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid: auto / var(--var132w) 1fr var(--var132w);
+
+    grid-template-areas:
+        ". smallcards ."
+        ". bigcards .";
+
+    background-color: var(--blackish-color);
+
+    &>h2 {
+        margin-bottom: min(calc(42vh / var(--viewportheight)*100), calc(42rem / 16));
+    }
+}
+
+.smallcards {
+    grid-area: smallcards;
+    display: grid;
+    grid: auto / 1fr 1fr 1fr;    
+    gap: 30px;
+}
+
+.bigcards {
+    grid-area: bigcards;
+    display:grid;
+    grid: auto / 1fr 1fr;
+    gap: 30px;    
+}
+
+.bigcard {
+    background-color: var(--almost-white-color);
+}
+
+button {
+    border-radius: 4px;
+    background-color: var(--fourth-color);
+    padding:0.5em;
+    white-space: nowrap;
+    color:var(--almost-white-color);
+}
+
+.card {
+    font-weight: 300;
+    margin-bottom:min(calc(80vh/var(--viewportheight)*100), calc(80rem/16));
+}
+
+.card>*+* {
+    margin-inline: 20px;
+    margin-bottom: min(calc(25vh/var(--viewportheight)*100), calc(25rem/16));
+}
+
+
+.socialmedialinks {
+    display: flex;
+    flex-direction: start;
+    gap:min(calc(15vw / var(--viewportwidth)*100), calc(15rem / 16));
+}
+
+.card button {
+    align-self: start;
+    margin-bottom: 14px;
+}
+
+.nomarginbottom {
+    margin-bottom: 0 !important;
+}
+
+/*#region fontfamily_color_weight_lineheight */
+.ft-regular {
+    font-family: var(--font-family-fira);
+    color: var(--blackish-color);
+    line-height: 1.4;
+}
+
+.ft-robot {
+    font-family: var(--font-family-roboto);
+    color: var(--blackish-color);
+    line-height: 1.1718;
+}
+
+.ft-robotblack {
+    font-family: var(--font-family-roboto-black);
+    font-weight: 700;
+    color: var(--blackish-color);
+}
+
+.ft-5xl {
+    font-size: var(--font-size-5xl);
+}
+
+.ft-4xl {
+    font-size: var(--font-size-4xl);
+}
+
+.ft-3xl {
+    font-family: var(--font-family-fira);
+    font-size: var(--font-size-3xl);
+}
+
+.ft-3xlbold {
+    font-family: var(--font-family-fira);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+}
+
+.ft-2xl {
+    font-family: var(--font-family-fira);
+    font-size: var(--font-size-2xl);
+}
+
+.ft-xl {
+    font-size: var(--font-size-xl);
+}
+
+.ft-small {
+    font-family: var(--font-family-fira);
+    font-size: var(--font-size-small);
+}
+
+.ft-higher {
+    line-height: 1.5;
+}
+
+.ft-white {
+    color: var(--almost-white-color);
+}
+/*#endregion fontfamily_color_weight_weight_lineheight */
+
+footer {
+    grid-area: footer;
+
+    display: grid;
+    grid: auto / var(--var132w) 1fr 1fr 1fr var(--var132w);
+
+    grid-template-areas:
+        ". footernav address socialmedia .";
+
+    /* padding-inline: min(calc(213vw / var(--viewportwidth)*100), calc(213rem / 16));
+    padding-block: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16)); */
+
+    background-color: var(--third-color);
+    /* display: flex;
+    justify-content: space-between; */
+
+    &>nav>ul {
+        list-style-type: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    & h2 {
+        padding-bottom: min(calc(10vh/var(--viewportheight)*100), calc(10rem/16));
+    }
+}
+
+.footernav {
+    grid-area: footernav;
+}
+
+.socialmedialinkssection {
+    grid-area: socialmedia;
+}
+
+.addresssection {
+    grid-area: address;
+}
+
+html {
+    font-size: 100%;
+    line-height: 1.172;
+    font-family: var(--font-family-fira);
+    color: var(--primary-color);
+}
+
+body {
+    display: grid;
+    grid: repeat(3 auto) / auto;
+    gap: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
+
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+    font-size: var(--font-size-default);
+    font-family: var(--font-family-fira);
+    background-color: var(--blackish-color);
+}
+
+.alignright {
+    text-align: right;
+}
+
+.padding-16 {
+    padding-inline: min(calc(16vw / var(--viewportwidth)*100), calc(16rem / 16));
+}
+
+.padding-90-213 {
+    padding-top: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
+    /* padding-inline: min(calc(213vw / var(--viewportwidth)*100), calc(213rem / 16)); */
+}
+
+/* .flow > * + * {
+    margin-bottom: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
+} */
