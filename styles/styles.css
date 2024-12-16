@@ -154,10 +154,6 @@ main {
     padding-inline: var(--var132w);    
 
     background-color: var(--blackish-color);
-
-    /* &>h2 {
-        margin-bottom: min(calc(42vh / var(--viewportheight)*100), calc(42rem / 16));
-    } */
 }
 
 .smallcards {
@@ -168,7 +164,19 @@ main {
 
     .card {
             grid-column: span 2;
+            display: grid;
+            grid-template-columns: subgrid;
+            align-items: start;
+            align-content: start;
+            gap: 22px;
+            
     }
+
+    .card>*:not(button) {
+        grid-column: span 2;
+    }
+
+
 }
 
 .bigcards {
@@ -178,12 +186,24 @@ main {
     gap: 97px 32px;
 
     .bigcard {
+        background-color: var(--almost-white-color);
+        grid-column: span 3;
+        display: grid;
+        grid-template-columns: subgrid;
+        gap: 22px;
+    }
+        
+    .bigcard>*:not(button) {
         grid-column: span 3;
     }
-}
 
-.bigcard {
-    background-color: var(--almost-white-color);
+    .bigcard>*:not(figure) {
+        margin-inline: 18px;
+    }
+
+    .bigcard>button {
+        margin-bottom: 14px;
+    }
 }
 
 button {
@@ -195,14 +215,9 @@ button {
 }
 
 .socialmedialinks {
-    display: flex;
+    /* display: flex;
     flex-direction: start;
-    gap:min(calc(15vw / var(--viewportwidth)*100), calc(15rem / 16));
-}
-
-.card button {
-    align-self: start;
-    margin-bottom: 14px;
+    gap:min(calc(15vw / var(--viewportwidth)*100), calc(15rem / 16)); */
 }
 
 /*#region fontfamily_color_weight_lineheight */
