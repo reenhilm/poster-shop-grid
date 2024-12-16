@@ -348,9 +348,6 @@ body {
 }
 
 @media (max-width: 1400px) {
-    /* header>h1 {
-            background-color: blue;
-    } */
     .smallcards {
         .card {
             grid-column: span 3;
@@ -363,10 +360,6 @@ body {
 }
 
 @media (max-width: 1225px) {
-    /* header>h1 {
-        background-color: orange;
-    } */
-
     .smallcards {
         .card {
             grid-column: span 6;
@@ -379,10 +372,6 @@ body {
 }
 
 @media (max-width: 900px) {
-    /* header>h1 {
-        background-color: aqua;
-    } */
-
     .bigcards {
         .bigcard {
             grid-column: span 6;
@@ -395,9 +384,18 @@ body {
 }
 
 @media (max-width: 760px) {
-    /* header>h1 {
-        background-color: hotpink;
-    } */
+    footer {
+        grid: 1fr 1fr auto / auto;
+        grid-template-areas: "footernav" 
+        "address"
+        "socialmedia";
+        gap: 40px;
+    }
+
+    .socialmedialinks {       
+        grid: auto / auto;
+        gap: 44px;
+    }
 
     header>h1 {
         white-space: normal;
