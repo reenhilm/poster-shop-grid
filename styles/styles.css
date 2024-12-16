@@ -51,8 +51,8 @@
     /* WHY? to keep the aspect ratio of paddings and spacings when using a smaller or bigger viewport, respecting the designer */
     --viewportwidth: 1440;
     --viewportheight: 663;
-
-    --var-cardgap-percent: 3%;
+    
+    --cardgap-height: 97px;
 
     --var213h: min(calc(213vh / var(--viewportheight)*100), calc(213rem / 16));
     --var123h: min(calc(123vh / var(--viewportheight)*100), calc(123rem / 16));
@@ -116,16 +116,27 @@ a.toggle {
 
 header {
     grid-area: header;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
     background-color: var(--secondary-color);
 
     &> h1 {
+        grid-column-start: 2;
+        text-align: center;
+        justify-self: center;
         align-self: center;
+        white-space: nowrap;
         padding-top: var(--var213h);
         padding-bottom: var(--var123h);
     }
 
     &>figure {
-        align-self: center;
+        text-align: center;
+        justify-self: center;
+        align-self: end;
+        grid-column-start: 2;
     }
 
     &> nav {
@@ -137,31 +148,38 @@ header {
 main {
     grid-area: main;
     display: grid;
-    grid: auto / var(--var132w) 1fr var(--var132w);
+    place-items: center;
+    gap:var(--cardgap-height);
 
-    grid-template-areas:
-        ". smallcards ."
-        ". bigcards .";
+    padding-inline: var(--var132w);    
 
     background-color: var(--blackish-color);
 
-    &>h2 {
+    /* &>h2 {
         margin-bottom: min(calc(42vh / var(--viewportheight)*100), calc(42rem / 16));
-    }
+    } */
 }
 
 .smallcards {
-    grid-area: smallcards;
+    max-width: 999px;
     display: grid;
-    grid: auto / 1fr 1fr 1fr;    
-    gap: 30px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--cardgap-height) 32px;
+
+    .card {
+            grid-column: span 2;
+    }
 }
 
 .bigcards {
-    grid-area: bigcards;
-    display:grid;
-    grid: auto / 1fr 1fr;
-    gap: 30px;    
+    max-width: 999px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 97px 32px;
+
+    .bigcard {
+        grid-column: span 3;
+    }
 }
 
 .bigcard {
@@ -176,17 +194,6 @@ button {
     color:var(--almost-white-color);
 }
 
-.card {
-    font-weight: 300;
-    margin-bottom:min(calc(80vh/var(--viewportheight)*100), calc(80rem/16));
-}
-
-.card>*+* {
-    margin-inline: 20px;
-    margin-bottom: min(calc(25vh/var(--viewportheight)*100), calc(25rem/16));
-}
-
-
 .socialmedialinks {
     display: flex;
     flex-direction: start;
@@ -196,10 +203,6 @@ button {
 .card button {
     align-self: start;
     margin-bottom: 14px;
-}
-
-.nomarginbottom {
-    margin-bottom: 0 !important;
 }
 
 /*#region fontfamily_color_weight_lineheight */
@@ -333,15 +336,8 @@ body {
     text-align: right;
 }
 
-.padding-16 {
-    padding-inline: min(calc(16vw / var(--viewportwidth)*100), calc(16rem / 16));
+@media (max-width: 760px) {
+    header>h1 {
+        white-space: normal;
+    }
 }
-
-.padding-90-213 {
-    padding-top: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
-    /* padding-inline: min(calc(213vw / var(--viewportwidth)*100), calc(213rem / 16)); */
-}
-
-/* .flow > * + * {
-    margin-bottom: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
-} */
