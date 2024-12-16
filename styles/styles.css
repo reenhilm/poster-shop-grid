@@ -330,7 +330,7 @@ html {
 
 body {
     display: grid;
-    grid: repeat(3 auto) / auto;
+    grid: repeat(3, auto) / auto;
     gap: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
 
     grid-template-areas:
