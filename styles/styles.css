@@ -57,8 +57,7 @@
     --var213h: min(calc(213vh / var(--viewportheight)*100), calc(213rem / 16));
     --var123h: min(calc(123vh / var(--viewportheight)*100), calc(123rem / 16));
     --var132w: min(calc(132vw / var(--viewportwidth)*100), calc(132rem / 16));
-
-    /* --gutterw: min(calc(213vw / var(--viewportwidth)*100), calc(213rem / 16)); */
+    --maxwidthmiddle: min(calc(999vw / var(--viewportwidth)*100), calc(999rem / 16));
 }
 
 .itemslist {
@@ -150,14 +149,12 @@ main {
     display: grid;
     place-items: center;
     gap:var(--cardgap-height);
-
     padding-inline: var(--var132w);    
-
     background-color: var(--blackish-color);
 }
 
 .smallcards {
-    max-width: 999px;
+    max-width: var(--maxwidthmiddle);
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: var(--cardgap-height) 32px;
@@ -175,12 +172,10 @@ main {
     .card>*:not(button) {
         grid-column: span 2;
     }
-
-
 }
 
 .bigcards {
-    max-width: 999px;
+    max-width: var(--maxwidthmiddle);
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 97px 32px;
@@ -212,12 +207,6 @@ button {
     padding:0.5em;
     white-space: nowrap;
     color:var(--almost-white-color);
-}
-
-.socialmedialinks {
-    /* display: flex;
-    flex-direction: start;
-    gap:min(calc(15vw / var(--viewportwidth)*100), calc(15rem / 16)); */
 }
 
 /*#region fontfamily_color_weight_lineheight */
@@ -280,19 +269,26 @@ button {
     color: var(--almost-white-color);
 }
 /*#endregion fontfamily_color_weight_weight_lineheight */
+.wrapper {
+    background-color: var(--third-color);
+    padding-inline: var(--var132w);
+}
 
 footer {
     grid-area: footer;
 
+    margin-inline:auto;
+
+    max-width: var(--maxwidthmiddle);
     display: grid;
-    grid: auto / var(--var132w) 1fr 1fr 1fr var(--var132w);
+    grid: auto / 1fr 1fr 1fr;
 
     grid-template-areas:
-        ". footernav address socialmedia .";
+        "footernav address socialmedia";
 
     padding-block: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16));
 
-    background-color: var(--third-color);
+
 
     &>nav>ul {
         list-style-type: none;
