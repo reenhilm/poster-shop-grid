@@ -290,7 +290,7 @@ footer {
     grid-template-areas:
         ". footernav address socialmedia .";
 
-    padding-top: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16));
+    padding-block: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16));
 
     background-color: var(--third-color);
 
