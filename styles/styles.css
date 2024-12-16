@@ -347,7 +347,58 @@ body {
     text-align: right;
 }
 
+@media (max-width: 1400px) {
+    /* header>h1 {
+            background-color: blue;
+    } */
+    .smallcards {
+        .card {
+            grid-column: span 3;
+        }
+
+        .card>*:not(button) {
+            grid-column: span 3;
+        }
+    }
+}
+
+@media (max-width: 1225px) {
+    /* header>h1 {
+        background-color: orange;
+    } */
+
+    .smallcards {
+        .card {
+            grid-column: span 6;
+        }
+
+        .card>*:not(button) {
+            grid-column: span 6;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    /* header>h1 {
+        background-color: aqua;
+    } */
+
+    .bigcards {
+        .bigcard {
+            grid-column: span 6;
+        }
+
+        .bigcard>*:not(button) {
+            grid-column: span 6;
+        }
+    }
+}
+
 @media (max-width: 760px) {
+    /* header>h1 {
+        background-color: hotpink;
+    } */
+
     header>h1 {
         white-space: normal;
     }
