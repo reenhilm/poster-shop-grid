@@ -52,10 +52,108 @@
     
     --cardgap-height: 97px;
 
-    --var213h: min(calc(213vh / var(--viewportheight)*100), calc(213rem / 16));
-    --var123h: min(calc(123vh / var(--viewportheight)*100), calc(123rem / 16));
-    --var132w: min(calc(132vw / var(--viewportwidth)*100), calc(132rem / 16));
+    --heightBeforeH1: min(calc(213vh / var(--viewportheight)*100), calc(213rem / 16));  
+    --heightAfterH1: min(calc(123vh / var(--viewportheight)*100), calc(123rem / 16));
+
+    --gutterWidth: min(calc(132vw / var(--viewportwidth)*100), calc(132rem / 16));
+    --heightMainFlow: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
+
     --maxwidthmiddle: min(calc(999vw / var(--viewportwidth)*100), calc(999rem / 16));
+
+    --navWidthGutter: min(calc(32vw / var(--viewportwidth)*100), calc(32rem / 16));
+    --navHeightFlow: min(calc(32vh / var(--viewportheight)*100), calc(32rem / 16));
+
+    --footerHeightFlow: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16));
+}
+
+html {
+    font-size: 100%;
+    line-height: 1.172;
+    font-family: var(--font-family-fira);
+    color: var(--primary-color);
+}
+
+body {
+    display: grid;
+    grid: repeat(3, auto) / auto;
+    gap: var(--heightMainFlow);
+
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+    font-size: var(--font-size-default);
+    font-family: var(--font-family-fira);
+    background-color: var(--blackish-color);
+}
+
+header {
+    grid-area: header;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    background-color: var(--secondary-color);
+
+    &> h1 {
+        grid-column-start: 2;
+        text-align: center;
+        justify-self: center;
+        align-self: center;
+        white-space: nowrap;
+        padding-top: var(--heightBeforeH1);
+        padding-bottom: var(--heightAfterH1);
+    }
+
+    &>figure {
+        text-align: center;
+        justify-self: center;
+        align-self: end;
+        grid-column-start: 2;
+    }
+
+    &> nav {
+        padding-inline: var(--navWidthGutter);
+        padding-block: var(--navHeightFlow);
+    }
+}
+
+header > nav.open {
+    background-color: var(--fourth-color);
+    left: 0rem;
+    transition: 0.4s ease-in;
+}
+
+header > nav {
+    left: calc(-560rem/16);
+    min-height: 100%;
+    position: absolute;
+    background-color: var(--blackish-color);
+    margin-top: calc(55rem/16);
+    z-index: 99;
+    width: calc(560rem/16);
+    transition: 0.4s ease-out;    
+}
+
+a.toggle {
+    z-index: 100;
+    position: absolute;
+    padding: 1rem;
+    transition: transform 0.4s;
+
+    &:hover {
+        transform: scale(1.5);
+    }
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    place-items: center;
+    gap:var(--cardgap-height);
+    padding-inline: var(--gutterWidth);    
+    background-color: var(--blackish-color);
 }
 
 .itemslist {
@@ -78,77 +176,8 @@
 }
 
 .totalrow td {
-    border-top: 2px solid white;
+    border-top: 2px solid var(--almost-white-color);
     font-weight: 700;
-}
-
-header> nav.open {
-    background-color: var(--fourth-color);
-    left: 0rem;
-    transition: 0.4s ease-in;
-}
-
-header > nav {
-    left: calc(-560rem/16);
-    min-height: 100%;
-    position: absolute;
-    background-color: var(--blackish-color);
-    color: white;
-    margin-top: calc(55rem/16);
-    z-index: 99;
-    width: calc(560rem/16);
-    transition: 0.4s ease-out;    
-}
-
-a.toggle {
-    z-index: 100;
-    position: absolute;
-    padding: 1rem;
-    transition: transform 0.4s;
-
-    &:hover {
-        transform: scale(1.5);
-    }
-}
-
-header {
-    grid-area: header;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    background-color: var(--secondary-color);
-
-    &> h1 {
-        grid-column-start: 2;
-        text-align: center;
-        justify-self: center;
-        align-self: center;
-        white-space: nowrap;
-        padding-top: var(--var213h);
-        padding-bottom: var(--var123h);
-    }
-
-    &>figure {
-        text-align: center;
-        justify-self: center;
-        align-self: end;
-        grid-column-start: 2;
-    }
-
-    &> nav {
-        padding-inline: min(calc(32vw / var(--viewportwidth)*100), calc(32rem / 16));
-        padding-block: min(calc(32vh / var(--viewportheight)*100), calc(32rem / 16));
-    }
-}
-
-main {
-    grid-area: main;
-    display: grid;
-    place-items: center;
-    gap:var(--cardgap-height);
-    padding-inline: var(--var132w);    
-    background-color: var(--blackish-color);
 }
 
 .smallcards {
@@ -269,12 +298,11 @@ button {
 /*#endregion fontfamily_color_weight_weight_lineheight */
 .wrapper {
     background-color: var(--third-color);
-    padding-inline: var(--var132w);
+    padding-inline: var(--gutterWidth);
 }
 
 footer {
     grid-area: footer;
-
     margin-inline:auto;
 
     max-width: var(--maxwidthmiddle);
@@ -284,9 +312,7 @@ footer {
     grid-template-areas:
         "footernav address socialmedia";
 
-    padding-block: min(calc(60vh/var(--viewportheight)*100), calc(60rem/16));
-
-
+    padding-block: var(--footerHeightFlow);
 
     &>nav>ul {
         list-style-type: none;
@@ -319,30 +345,8 @@ footer {
     grid-area: address;
 }
 
-html {
-    font-size: 100%;
-    line-height: 1.172;
-    font-family: var(--font-family-fira);
-    color: var(--primary-color);
-}
-
-body {
-    display: grid;
-    grid: repeat(3, auto) / auto;
-    gap: min(calc(90vh/var(--viewportheight)*100), calc(90rem/16));
-
-    grid-template-areas:
-    "header"
-    "main"
-    "footer";
-
-    font-size: var(--font-size-default);
-    font-family: var(--font-family-fira);
-    background-color: var(--blackish-color);
-}
-
 .alignright {
-    text-align: right;
+    justify-self: right;
 }
 
 @media (max-width: 1400px) {
@@ -385,8 +389,8 @@ body {
     footer {
         grid: 1fr 1fr auto / auto;
         grid-template-areas: "footernav" 
-        "address"
-        "socialmedia";
+                             "address"
+                             "socialmedia";
         gap: 40px;
     }
 
